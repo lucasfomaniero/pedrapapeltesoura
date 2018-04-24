@@ -24,13 +24,6 @@ public class JogoController {
         return jogoRepository.findAll();
     }
 
-    /*//GET - LISTAR TODAS AS VITÓRIAS DE UM JOGADOR:
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/jogos/{nome}", method = RequestMethod.GET)
-    public Iterable<Jogo> ListarVitoriasJogador(@PathVariable("nome") String nome){
-        return jogoRepository.findAllByVencedor(nome);
-    }*/
-
     //POST - CRIAR UM NOVO JOGO
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/jogos/{nome}/{escolha}", method = RequestMethod.POST)
@@ -70,7 +63,7 @@ public class JogoController {
     }
 
 
-    //GET - LISTAR TODAS AS VITÓRIAS DE UM JOGADOR:
+    //GET - RETORNA A QUANTIDADE DE VITÓRIAS DE UM JOGADOR:
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/jogos/{nome}", method = RequestMethod.GET)
         public int getQuantidadeVitoriasJogador( @PathVariable("nome") String nome, @RequestParam("visao") String visao){
