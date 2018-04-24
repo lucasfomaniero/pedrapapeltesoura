@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedra Papel Tesoura Lagarto Spock</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-app="PPT" ng-controller="PPTcontroller">
+    <!--Cabeçalho com a imagem do jogo-->
+    <div class="container" align="center">
+        <img src="../../../images/Regras.png" height="200" width="200"/>
+        <!--<h2>Pedra Papel Tesoura Lagarto Spock</h2>-->
+        <!--<h2>💎 📃 ✂️ 🦎 🖖</h2>-->
+    </div>
+    <!--Fim do Cabeçalho com a imagem do jogo-->
+
+    <!--Início da div com a escolha do usuário e opção-->
+    <div class="container" ng-hide="jogoEstaAtivo" >
+
+        <!--Div para inclusão do nome do jogador-->
+            <div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon">Nome</span>
+                    </div>
+                    <input id="nomeJogador" type="text" ng-model="jogador1_nome" class="form-control" placeholder="Digite o nome do jogador" aria-label="Username" required aria-describedby="basic-addon1">
+                </div>
+                <button id="proximo" type="button" class="btn btn-secondary" ng-click="mostrarJogadas()">Próximo</button>
+            </div>
+        <!--Fim da Div para inclusão do nome do jogador-->
+            <hr ng-show="escolhendoJogada">
+        <!--Início da div para escolha da opção-->
+            <div ng-show="escolhendoJogada">
+                <p>Jogador: {{jogador1_nome}}</p>
+                <p>Escolha a sua jogada: {{jogador1_escolha}}</p>
+                <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm"><button id="Pedra" type="button" class="botaoJogada" ng-click=escolherJogada("Pedra")><img class="jogada" src="../../../images/pedra.png" height="160" width="160"/></button> </div>
+                        <div class="col-sm"><button id="Papel" type="button" class="botaoJogada" ng-click=escolherJogada("Papel")><img class="jogada" src="../../../images/papel.png" height="160" width="160"/></button></div>
+                        <div class="col-sm"><button id="Tesoura" type="button" class="botaoJogada" ng-click=escolherJogada("Tesoura")><img class="jogada" src="../../../images/tesoura.png" height="160" width="160"/></button></div>
+                        <div class="col-sm"><button id="Lagarto" type="button" class="botaoJogada" ng-click=escolherJogada("Lagarto")><img class="jogada" src="../../../images/lagarto.png" height="160" width="160"/></button></div>
+                        <div class="col-sm"><button id="Spock" type="button" class="botaoJogada" ng-click=escolherJogada("Spock")><img class="jogada" src="../../../images/spock.png" height="160" width="160"/></button></div>
+                    </div>
+                </div>
+            </div>
+        <!--Fim da div para escolha da opção-->
+    </div>
+    <!--Fim da div para escolha do usuário e opção-->
+
+    <!--Início da div que mostra o jogo-->
+    <div class="container" ng-show="jogoEstaAtivo" align="center">
+        <div class="row">
+            <div class="col-lg-4"><h5>Jogada de {{jogador1_nome}}:<img src="../../../images/ganhador.png" ng-show="vencedor===jogador1_nome" ng-show="jogoEstaAtivo" height="50" width="50"/></h5></h5></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"><h5>Jogada do Computador:<img src="../../../images/ganhador.png" ng-show="vencedor===jogador2_nome" ng-show="jogoEstaAtivo" height="50" width="50"/></h5></div>
+        </div>
+        <div class="row">
+            <div ng-show="jogoEstaAtivo" class="col-lg-4"><img src={{imgJogada}} height="180" width="180"/></div>
+            <div ng-show="jogoEstaAtivo" class="col-lg-4"><img src="../../../images/vs.png" height="259" width="194"/></div>
+            <div ng-show="jogoEstaAtivo" class="col-lg-4"><img src={{imgComputador}} height="180" width="180"/></div>
+        </div>
+            <div class="container" ng-show="jogoEstaAtivo" align="center">
+                <h3 ng-show="jogador1_escolha===jogador2_escolha" >Empate!</h3>
+                <h3 ng-show="jogador1_escolha!=jogador2_escolha" >{{vencedor}} venceu!</h3>
+                <h3 ng-show="jogador1_nome===vencedor">Quantidade de vitórias no total: {{qtdVitoriasTotal}}</h3>
+                <h3 ng-show="qtdVitoriasSeguidas>1">Esta é a {{qtdVitoriasSeguidas}}ª vitória seguida.</h3>
+            </div>
+        </div>
+    <!--Fim da div que mostra o jogo-->
+
+    <!--Início da div dos botões de controle do jogo: Voltar e novo jogo-->
+    <div class="container" id="jogo" align="center">
+        <br>
+        <br>
+        <button class="btn btn-secondary" id="voltar" ng-show="jogoEstaAtivo" type="button" ng-click="voltar()">Voltar</button>
+        <button class="btn btn-primary" id="jogar" ng-show="mostrarBotaoNovoJogo" type="button" ng-click="novoJogo()">Jogar</button>
+    </div>
+    <!--Fim da div dos botões de controle do jogo-->
+
+</body>
+</html>

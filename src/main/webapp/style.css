@@ -1,0 +1,22 @@
+.jogada {
+    opacity: 0.8;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.jogada:hover{
+    transform: scale(1.5, 1.5); /** default is 1, scale it to 1.5 */
+    opacity: 1;
+    transition-duration: 0.3s;
+}
+
+.botaoJogada{
+    border: 1px;
+    fill: none;
+    border-radius: 50%;
+
+}
+
+.botaoJogada:active .botaoJogada:focus{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);;
+}
